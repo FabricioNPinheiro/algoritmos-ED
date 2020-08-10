@@ -1,2 +1,2 @@
-# algoritmos-ED
-Repositório dedicado à disciplina de estrutura de dados
+# Algoritmos-ED
+Repositório referente à disciplina de Estrutura de Dados, semestre 2020.1.
