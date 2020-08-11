@@ -43,19 +43,39 @@ class vector{
         }
 
         bool remover(unsigned int elemento){
-            for (int i = 0; i < tamanho; i++)
-            {
+            if(tamanho < 0){
+                return false;
+            }
+            else {
+                for (int i = 0; i < tamanho; i++) {
                 if(vetor[i] == elemento){
-                    for(unsigned int j = i+1; j < tamanho; j++) {
+                    for(unsigned int j = i+1; j < tamanho; j++){
                           vetor[j-1] = vetor[j];
                     }
                     tamanho--;
+                    return true;
+                } else {
+                    return false;
+                  }
                 }
-            }
+            }   
         }
 
 
-        bool pertinencia(int elemento){}
+        bool pertinencia(int elemento){
+            if(tamanho < 0) {
+                return false
+            } else {
+                for (int i = 0; i < tamanho; i++) {
+                    if(vetor[i] == elemento){
+                        return true;
+                    } else {
+                        return false;
+                      }
+                }
+             }
+        }
+
         int tamanho(){}
 
         //OPERAÇÕES LISTAS
