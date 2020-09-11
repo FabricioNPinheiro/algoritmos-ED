@@ -9,7 +9,7 @@ class list {
     no_encadeado* proximo;
 
     friend class list;
-    
+
     // Construtor
     no_encadeado(int valor, no_encadeado* proximo = nullptr);
   };
@@ -25,6 +25,7 @@ class list {
 
   // Métodos de "Coleção"
   unsigned int obter_tamanho() { return tamanho; }
+
 
   void inserir(int elemento);
   bool remover(int elemento);

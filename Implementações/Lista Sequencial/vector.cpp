@@ -22,20 +22,6 @@ vector::vector(unsigned int tamanho, int inicial) {
     }
 }
 
-// Método de Ordenação
-void insertionSort(int vetor[], int tam) {
-    for (int i = 1; i < tam; i++) {
-		int escolhido = vetor[i];
-		int j = i - 1;
-		
-		while ((j >= 0) && (vetor[j] > escolhido)) {
-			vetor[j + 1] = vetor[j];
-			j--;
-		}
-		vetor[j + 1] = escolhido;
-	}
-}
-
 // --- Métodos de "Coleção" ---
 
 

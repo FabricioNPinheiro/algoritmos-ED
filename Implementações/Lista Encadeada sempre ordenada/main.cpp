@@ -1,15 +1,16 @@
-#include "list.hpp"
+#include "ordered_list.hpp"
 #include <iostream>
 #include <limits>
 
 using namespace std;
 
 int main() {
+    // unsigned int capacidade;
     unsigned int comandos;
     
     cin >> comandos;
     
-    list l;
+    ordered_list v;
     
     while (comandos-- > 0) {
         char acao;
@@ -21,32 +22,30 @@ int main() {
         switch(acao) {
             case 'i':
                 cin >> elemento;
-                l.inserir(elemento);
+                v.inserir(elemento);
                 cout << "ok" << endl;
                 break;
             case 'r':
                 cin >> elemento;
-                cout << l.remover(elemento) << endl;
+                cout << v.remover(elemento) << endl;
                 break;
             case 'b':
                 cin >> elemento;
-                cout << l.pertence(elemento) << endl;
+                cout << v.pertence(elemento) << endl;
                 break;
             case 't':
-                cout << l.obter_tamanho() << endl;
+                cout << v.obter_tamanho() << endl;
                 break;
-            case 'I':
-                cin >> indice >> elemento;
-                l.inserir_em(indice, elemento);
-                cout << "ok" << endl;
+            case 'c':
+                cout << (v.obter_tamanho() >= v.obter_tamanho()) << endl;
                 break;
             case 'R':
                 cin >> indice;
-                cout << l.remover_de(indice) << endl;
+                cout << v.remover_de(indice) << endl;
                 break;
             case 'e':
                 cin >> elemento;
-                indice = l.obter_indice_de(elemento);
+                indice = v.obter_indice_de(elemento);
                 if (indice == std::numeric_limits<unsigned int>::max())
                     cout << "ko" << endl;
                 else
@@ -54,7 +53,7 @@ int main() {
                 break;
             case 'l':
                 cin >> indice;
-                elemento = l.obter_elemento_em(indice);
+                elemento = v.obter_elemento_em(indice);
                 if (elemento == std::numeric_limits<int>::max())
                     cout << "ko" << endl;
                 else

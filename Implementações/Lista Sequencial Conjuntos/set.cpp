@@ -17,17 +17,21 @@ set::set(unsigned int capacidade) {
 // NOTE Deve aumentar a capacidade caso necessário.
 // NOTE Observe que aumentar em apenas uma unidade não nos alivia da pressão que tínhamos antes...
 bool set::inserir(int elemento) {
-     if(tamanho < capacidade){
+    if(pertence(elemento)){
+        return false;
+    } else {
+        if(tamanho < capacidade){
         vetor[tamanho] = elemento;
          tamanho++;
          capacidade++;
          return true;
-    } else {
-        vetor = (int *) realloc(vetor, sizeof(int)*capacidade);
-        tamanho++;
-        vetor[tamanho] = elemento;
-        return true;
-        }
+        } else {
+            vetor = (int *) realloc(vetor, sizeof(int)*capacidade);
+            tamanho++;
+            vetor[tamanho] = elemento;
+            return true;
+            }
+    }
     return false;
 }
 
@@ -75,35 +79,38 @@ void set::uniao_com(set const &conjunto) {
 
 // Tornar o próprio conjunto (`this`) o resultado de sua intersecção com o outro informado.
 void set::intersecao_com(set const &conjunto) {
-    int vet[capacidade];
-    for (int i = 0; i < conjunto.tamanho; i++) {
-        if((pertence(conjunto.vetor[i]))){
-                vet[i] = conjunto.vetor[i];
-            }
-        }
-
-    for (int i = 0; i < capacidade; i++) {
-        for (int j = 0; j < tamanho; j++) {
-            if(vet[i] != vetor[j]){
-                remover(vetor[j]);
-            }
-        }
+  int *temp = new int[tamanho];
+  for (unsigned l = 0; l < tamanho; l++) {
+       temp[l] = 0;
+  }
+  
+  if (conjunto.tamanho == 0) {
+        this->tamanho = 0;
+  }
+  
+  for (unsigned int i = 0; i < tamanho; i++) {
+    if ((conjunto.pertence(vetor[i]))) {
+      temp[i] = vetor[i];
     }
+  }
+  
+  for (unsigned int i = 0; i < tamanho; i++) {
+    vetor[i] = temp[i];
+  }
 }
 
 // Testar se este conjunto (`this`) está contido no outro informado.
 bool set::esta_contido_em(set const &conjunto) const {
-    if(tamanho > conjunto.tamanho){
-        return false;
-    } else {
-        for (int j = 0; j < conjunto.tamanho; j++) {
-            for (int i = 0; i < tamanho; i++) {
-                if(vetor[i] != conjunto.vetor[j]){
+    // TODO Implementação.
+        if(tamanho == 0) {
+            return true;
+        } else {
+            for(unsigned int i = 0; i < tamanho; i++) {
+                if(!(conjunto.pertence(vetor[i]))) {
                     return false;
                 }
-            }   
+            }
+            return true;
         }
-        return true;
-    }
     return false;
 }
